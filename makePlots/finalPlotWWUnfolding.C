@@ -154,7 +154,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
   }
 
   TString theYTitle = "#sigma / GeV [pb]";
-  if     (                 keyLabel0.Contains("NJETS"))  theYTitle = "d#sigma/dN_{J}";
+  if     ( isNormalized && keyLabel0.Contains("NJETS"))  theYTitle = "1/#sigma d#sigma/dN_{J}";
+  else if(!isNormalized && keyLabel0.Contains("NJETS"))  theYTitle = "d#sigma/dN_{J}";
   else if(!isNormalized && keyLabel0.Contains("MLL"))    theYTitle = "d#sigma/dm_{ll} [pb/GeV]";
   else if(!isNormalized && keyLabel0.Contains("DPHILL")) theYTitle = "d#sigma/d#Delta#phi_{ll} [pb/rad]";
   else if(!isNormalized && keyLabel0.Contains("PTL1"))   theYTitle = "d#sigma/dp_{T}^{max} [pb/GeV]";
@@ -279,7 +280,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
       pullinv = 1.0; pullinverr = 0.0;
       if(hNum->GetBinContent(i) > 0 && hDen->GetBinContent(i) > 0){
         pull = (hNum->GetBinContent(i)/hDen->GetBinContent(i));
-	pullerr = pull*hDen->GetBinError(i)/hDen->GetBinContent(i);
+	pullerr = hDen->GetBinError(i)/hDen->GetBinContent(i);
         pullinv = (hDen->GetBinContent(i)/hNum->GetBinContent(i));
 	pullinverr = pullinv*hDen->GetBinError(i)/hDen->GetBinContent(i);
       }

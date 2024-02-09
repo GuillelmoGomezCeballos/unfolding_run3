@@ -119,7 +119,8 @@ void makeWWNtuple(){
 
  //makeWWResult("NJET", ""    , false);
  //makeWWResult("NJET", ""    , true);
- makeWWResult("NJETS", ""   , false);
+ //makeWWResult("NJETS", ""   , false);
+ makeWWResult("NJETS", ""   , true);
  //makeWWResult("N0JET", ""   , false);
 
 }
