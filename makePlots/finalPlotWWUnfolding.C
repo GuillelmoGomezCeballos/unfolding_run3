@@ -102,17 +102,23 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
                       TMath::Abs(1-hPred1_PS ->GetBinContent(i)/hPred1->GetBinContent(i)),
                       0.0};
 
+    if(keyLabel0.Contains("NJETS")) {
+      if     (i == 1) diff[4] = 0.101;
+      else if(i == 2) diff[4] = 0.076;
+      else if(i == 3) diff[4] = 0.073;
+    }
+
     if(isNormalized) {
       diff[1] = TMath::Abs(1-(hPred1_PDF->GetBinContent(i)/hPred1_PDF->GetSumOfWeights())/(hPred1->GetBinContent(i)/hPred1->GetSumOfWeights()));
       diff[2] = TMath::Abs(1-(hPred1_QCD->GetBinContent(i)/hPred1_QCD->GetSumOfWeights())/(hPred1->GetBinContent(i)/hPred1->GetSumOfWeights()));
       diff[3] = TMath::Abs(1-(hPred1_PS ->GetBinContent(i)/hPred1_PS ->GetSumOfWeights())/(hPred1->GetBinContent(i)/hPred1->GetSumOfWeights()));
+      if(keyLabel0.Contains("NJETS")) {
+        if     (i == 1) diff[4] = 0.014*2;
+        else if(i == 2) diff[4] = 0.022*2;
+        else if(i == 3) diff[4] = 0.044*2;
+      }
     }
 
-    if(keyLabel0.Contains("NJETS")) {
-      if     (i == 1) diff[4] = 0.014*2;
-      else if(i == 2) diff[4] = 0.022*2;
-      else if(i == 3) diff[4] = 0.044*2;
-    }
 
     hData->SetBinContent(i,hData->GetBinContent(i)*hPred1->GetBinContent(i));
     hData->SetBinError  (i,hData->GetBinError  (i)*hPred1->GetBinContent(i));
