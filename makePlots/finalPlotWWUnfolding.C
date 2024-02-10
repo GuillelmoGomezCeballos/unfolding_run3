@@ -16,7 +16,7 @@
 
 void eraselabel(TPad *p,Double_t h){
   p->cd();
-  TPad *pe = new TPad("pe","pe",0.02,0,p->GetLeftMargin()-0.007,h);	   
+  TPad *pe = new TPad("pe","pe",0.02,0,p->GetLeftMargin()-0.007,h);
   pe->Draw();
   pe->SetFillColor(p->GetFillColor()); 
   pe->SetBorderMode(0);
@@ -96,10 +96,11 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
                         TMath::Abs(1-hPred1_PS ->GetSumOfWeights()/hPred1->GetSumOfWeights())};
 
   for(Int_t i=1;i<=hPred1->GetNbinsX();++i){
-    double diff[4] = {hPred1->GetBinError(i)/hPred1->GetBinContent(i),
+    double diff[5] = {hPred1->GetBinError(i)/hPred1->GetBinContent(i),
                       TMath::Abs(1-hPred1_PDF->GetBinContent(i) /hPred1->GetBinContent(i)),
                       TMath::Abs(1-hPred1_QCD->GetBinContent(i) /hPred1->GetBinContent(i)),
-                      TMath::Abs(1-hPred1_PS ->GetBinContent(i)/hPred1->GetBinContent(i))};
+                      TMath::Abs(1-hPred1_PS ->GetBinContent(i)/hPred1->GetBinContent(i)),
+                      0.0};
 
     if(isNormalized) {
       diff[1] = TMath::Abs(1-(hPred1_PDF->GetBinContent(i)/hPred1_PDF->GetSumOfWeights())/(hPred1->GetBinContent(i)/hPred1->GetSumOfWeights()));
@@ -107,11 +108,17 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
       diff[3] = TMath::Abs(1-(hPred1_PS ->GetBinContent(i)/hPred1_PS ->GetSumOfWeights())/(hPred1->GetBinContent(i)/hPred1->GetSumOfWeights()));
     }
 
+    if(keyLabel0.Contains("NJETS")) {
+      if     (i == 1) diff[4] = 0.014;
+      else if(i == 2) diff[4] = 0.022;
+      else if(i == 3) diff[4] = 0.044;
+    }
+
     hData->SetBinContent(i,hData->GetBinContent(i)*hPred1->GetBinContent(i));
     hData->SetBinError  (i,hData->GetBinError  (i)*hPred1->GetBinContent(i));
 
-    hPred1->SetBinError(i,sqrt(diff[0]*diff[0]+diff[1]*diff[1]+diff[2]*diff[2]+diff[3]*diff[3])*hPred1->GetBinContent(i));
-    if(isDebug) printf("hPredSyst (%2d) %5.2f %5.2f %5.2f %5.2f -> %5.2f\n",i,100*diff[0],100*diff[1],100*diff[2],100*diff[3],100*hPred1->GetBinError(i)/hPred1->GetBinContent(i));
+    hPred1->SetBinError(i,sqrt(diff[0]*diff[0]+diff[1]*diff[1]+diff[2]*diff[2]+diff[3]*diff[3]+diff[4]*diff[4])*hPred1->GetBinContent(i));
+    if(isDebug) printf("hPredSyst (%2d) %5.2f %5.2f %5.2f %5.2f %5.2f -> %5.2f\n",i,100*diff[0],100*diff[1],100*diff[2],100*diff[3],100*diff[4],100*hPred1->GetBinError(i)/hPred1->GetBinContent(i));
   }
 
   hData ->Scale(scaleDFSF);
