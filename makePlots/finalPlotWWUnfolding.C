@@ -109,9 +109,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
     }
 
     if(keyLabel0.Contains("NJETS")) {
-      if     (i == 1) diff[4] = 0.014;
-      else if(i == 2) diff[4] = 0.022;
-      else if(i == 3) diff[4] = 0.044;
+      if     (i == 1) diff[4] = 0.014*2;
+      else if(i == 2) diff[4] = 0.022*2;
+      else if(i == 3) diff[4] = 0.044*2;
     }
 
     hData->SetBinContent(i,hData->GetBinContent(i)*hPred1->GetBinContent(i));
@@ -224,7 +224,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
   hData ->Scale(1./normalization[1]);
 
   if(isLogY == true) hPred1->GetYaxis()->SetRangeUser(hPred1->GetMinimum()/10,hPred1->GetMaximum()*100);
-  else               hPred1->GetYaxis()->SetRangeUser(0.0,hPred1->GetMaximum()*1.7);
+  else               hPred1->GetYaxis()->SetRangeUser(0.0,hPred1->GetMaximum()*1.4);
   hPred1->Draw("hist,x0");
   hData->Draw("epx0,same");
 
@@ -237,7 +237,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
       gsyst->SetPointEYhigh(i, sqrt(hPred1->GetBinError(i+1)*hPred1->GetBinError(i+1)+hPred1->GetBinContent(i+1)*hPred1->GetBinContent(i+1)*systBck*systBck));
     }
     gsyst->SetFillColor(12);
-    gsyst->SetFillStyle(3003);
+    gsyst->SetFillStyle(3001);
     gsyst->SetMarkerSize(0);
     gsyst->SetLineWidth(0);
     gsyst->SetLineColor(kWhite);
@@ -306,7 +306,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
 
   hRatio->Draw("ex0");
   hBand->SetFillColor(12);
-  hBand->SetFillStyle(3003);
+  hBand->SetFillStyle(3001);
   hBand->SetMarkerSize(0);
   hBand->SetLineWidth(0);
   hBand->Draw("E2same");
@@ -333,7 +333,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
                            TMath::Abs(hRatio->GetMinimum())) + theLines[1];
   // Double_t dy = TMath::Max(TMath::Abs(TMath::Abs(hRatio->GetMaximum())-1),TMath::Abs(TMath::Abs(hRatio->GetMinimum()))-1);
   double maxValue = 1.999;
-  if(keyLabel0.Contains("NJETS")) maxValue = 2.499;
+  if(keyLabel0.Contains("NJETS")) maxValue = 1.999;
   hRatio->GetYaxis()->SetRangeUser(0.201,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   eraselabel(pad1,hData->GetXaxis()->GetLabelSize());
