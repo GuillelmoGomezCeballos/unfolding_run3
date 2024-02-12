@@ -59,7 +59,7 @@ void atributes(TH1D *histo, TString xtitle = "", TString ytitle = "Fraction", TS
   histo->SetMarkerStyle(kFullCircle);
 }
 
-void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) {
+void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, bool useMG = true) {
 
   TString XTitle = "X";
   TString units = "GeV";
@@ -81,7 +81,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false) 
 
   double scaleDFSF = 1.0; if(keyLabel0.Contains("N0JET")) scaleDFSF = 2.0;
 
-  TFile *_fileGenWW = TFile::Open("genWW.root");
+  TString genFileName = "genWW_POWHEG_MG.root";
+  if(useMG == false) genFileName = "genWW_POWHEG_MCFM.root";
+  TFile *_fileGenWW = TFile::Open(genFileName.Data());
   TH1D* hPred1     = (TH1D*)_fileGenWW->Get(Form("hDWW%s",keyLabel0.Data()));
   TH1D* hPred1_PDF = (TH1D*)_fileGenWW->Get(Form("hDWW%s_PDF",keyLabel0.Data()));
   TH1D* hPred1_QCD = (TH1D*)_fileGenWW->Get(Form("hDWW%s_QCD",keyLabel0.Data()));
