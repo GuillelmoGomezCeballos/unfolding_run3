@@ -83,8 +83,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
 
   const int theFillColor1 = 12;
   const int theFillStyle1 = 3001;
-  const int theFillColor2 = 14;
-  const int theFillStyle2 = 3004;
+  const int theFillColor2 = 27;
+  const int theFillStyle2 = 3005;
 
   TString genFileName = "histogen_powheg_mapgraph.root";
   if(useMG == false) genFileName = "histogen_powheg_mcfm.root";
