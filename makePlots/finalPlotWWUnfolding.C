@@ -293,6 +293,10 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hPred2->Scale(1./normalization[1]);
   hData ->Scale(1./normalization[2]);
 
+  for(Int_t i=1;i<=hPred1->GetNbinsX();++i){
+    if(isDebug) printf("hData (%2d) %7.3f %7.3f\n",i,hData->GetBinContent(i),hData->GetBinError(i));
+  }
+
   if(isLogY == true) hPred1->GetYaxis()->SetRangeUser(hPred1->GetMinimum()/10,hPred1->GetMaximum()*100);
   else               hPred1->GetYaxis()->SetRangeUser(0.0,hPred1->GetMaximum()*1.4);
   hPred1->Draw("hist,x0");
