@@ -82,7 +82,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   double scaleDFSF = 1.0; if(keyLabel0.Contains("N0JET")) scaleDFSF = 2.0;
 
   const int theFillColor1 = 12;
-  const int theFillStyle1 = 3001;
+  const int theFillStyle1 = 3345;
   const int theFillColor2 = 27;
   const int theFillStyle2 = 3005;
 
