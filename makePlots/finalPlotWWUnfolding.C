@@ -85,6 +85,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   const int theFillStyle1 = 3345;
   const int theFillColor2 = 27;
   const int theFillStyle2 = 3005;
+  const int theFillColor3 = 46;
+  const int theFillStyle3 = 3007;
 
   TString genFileName = "histogen_powheg_mapgraph.root";
   if(useMG == false) genFileName = "histogen_powheg_mcfm.root";
@@ -101,6 +103,13 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   TH1D* hPred2_QCD = (TH1D*)_fileGenWW2->Get(Form("hDWW%s_QCD",keyLabel0.Data())); hPred2_QCD->SetDirectory(0);
   TH1D* hPred2_PS  = (TH1D*)_fileGenWW2->Get(Form("hDWW%s_PS",keyLabel0.Data()));  hPred2_PS ->SetDirectory(0);
   _fileGenWW2->Close();
+
+  TFile *_fileGenWW3 = TFile::Open("histogen_minnlo_mapgraph.root");
+  TH1D* hPred3     = (TH1D*)_fileGenWW3->Get(Form("hDWW%s",keyLabel0.Data()));     hPred3    ->SetDirectory(0);
+  TH1D* hPred3_PDF = (TH1D*)_fileGenWW3->Get(Form("hDWW%s_PDF",keyLabel0.Data())); hPred3_PDF->SetDirectory(0);
+  TH1D* hPred3_QCD = (TH1D*)_fileGenWW3->Get(Form("hDWW%s_QCD",keyLabel0.Data())); hPred3_QCD->SetDirectory(0);
+  TH1D* hPred3_PS  = (TH1D*)_fileGenWW3->Get(Form("hDWW%s_PS",keyLabel0.Data()));  hPred3_PS ->SetDirectory(0);
+  _fileGenWW3->Close();
 
   TString plotName = Form("input_files/xs_WW%s_normalized%d.root", keyLabel0.Data(), isNormalized);
   TFile *_file0 = TFile::Open(plotName.Data());
@@ -153,37 +162,60 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
 
     hPred2->SetBinError(i,sqrt(diff[0]*diff[0]+diff[1]*diff[1]+diff[2]*diff[2]+diff[3]*diff[3]+diff[4]*diff[4])*hPred2->GetBinContent(i));
     if(isDebug) printf("hPredSyst2 (%2d) %5.2f %5.2f %5.2f %5.2f %5.2f -> %5.2f\n",i,100*diff[0],100*diff[1],100*diff[2],100*diff[3],100*diff[4],100*hPred2->GetBinError(i)/hPred2->GetBinContent(i));
+
+    // Pred3
+    diff[0] = hPred3->GetBinError(i)/hPred3->GetBinContent(i);
+    diff[1] = TMath::Abs(1-hPred3_PDF->GetBinContent(i)/hPred3->GetBinContent(i));
+    diff[2] = TMath::Abs(1-hPred3_QCD->GetBinContent(i)/hPred3->GetBinContent(i));
+    diff[3] = TMath::Abs(1-hPred3_PS ->GetBinContent(i)/hPred3->GetBinContent(i));
+    diff[4] = 0.0;
+
+    if(isNormalized) {
+      diff[1] = TMath::Abs(1-(hPred3_PDF->GetBinContent(i)/hPred3_PDF->GetSumOfWeights())/(hPred3->GetBinContent(i)/hPred3->GetSumOfWeights()));
+      diff[2] = TMath::Abs(1-(hPred3_QCD->GetBinContent(i)/hPred3_QCD->GetSumOfWeights())/(hPred3->GetBinContent(i)/hPred3->GetSumOfWeights()));
+      diff[3] = TMath::Abs(1-(hPred3_PS ->GetBinContent(i)/hPred3_PS ->GetSumOfWeights())/(hPred3->GetBinContent(i)/hPred3->GetSumOfWeights()));
+    }
+
+    hPred3->SetBinError(i,sqrt(diff[0]*diff[0]+diff[1]*diff[1]+diff[2]*diff[2]+diff[3]*diff[3]+diff[4]*diff[4])*hPred3->GetBinContent(i));
+    if(isDebug) printf("hPredSyst3 (%2d) %5.2f %5.2f %5.2f %5.2f %5.2f -> %5.2f\n",i,100*diff[0],100*diff[1],100*diff[2],100*diff[3],100*diff[4],100*hPred3->GetBinError(i)/hPred3->GetBinContent(i));
   }
 
   hData ->Scale(scaleDFSF);
   hPred1->Scale(scaleDFSF);
   hPred2->Scale(scaleDFSF);
-  
+  hPred3->Scale(scaleDFSF);
+
   //hData ->Scale(1,"width");
   //hPred1->Scale(1,"width");
   //hPred2->Scale(1,"width");
+  //hPred3->Scale(1,"width");
 
   Int_t ww = 800;
   Int_t wh = 800;
 
   TCanvas *c1 = new TCanvas("c1", "c1", ww, wh);
 
-  TPad* pad1 = new TPad("pad1", "pad1", 0, 0.420, 1, 0.975);
-  TPad* pad2 = new TPad("pad2", "pad2", 0, 0.210, 1, 0.415);
-  TPad* pad3 = new TPad("pad3", "pad3", 0, 0.000, 1, 0.205);
+  TPad* pad1 = new TPad("pad1", "pad1", 0, 0.470, 1, 0.975);
+  TPad* pad2 = new TPad("pad2", "pad2", 0, 0.320, 1, 0.465);
+  TPad* pad3 = new TPad("pad3", "pad3", 0, 0.170, 1, 0.315);
+  TPad* pad4 = new TPad("pad4", "pad4", 0, 0.000, 1, 0.165);
 
   pad1->SetTopMargin   (0.08);
   pad1->SetBottomMargin(0.00);  // 0.02
 
-  pad2->SetTopMargin   (0.05);  // 0.08
-  pad2->SetBottomMargin(0.30);  // 0.35
+  pad2->SetTopMargin   (0.02);  // 0.08
+  pad2->SetBottomMargin(0.20);  // 0.35
 
-  pad3->SetTopMargin   (0.05);  // 0.08
-  pad3->SetBottomMargin(0.30);  // 0.35
+  pad3->SetTopMargin   (0.02);  // 0.08
+  pad3->SetBottomMargin(0.20);  // 0.35
+
+  pad4->SetTopMargin   (0.02);  // 0.08
+  pad4->SetBottomMargin(0.30);  // 0.35
 
   pad1->Draw();
   pad2->Draw();
   pad3->Draw();
+  pad4->Draw();
 
   pad1->cd();
   gStyle->SetOptStat(0);
@@ -198,6 +230,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
     hPred2->GetXaxis()->SetTitle(XTitle.Data());
     hPred2->GetXaxis()->SetLabelOffset(0.005);
     hPred2->GetXaxis()->SetTitleOffset(  0.9);
+    hPred3->GetXaxis()->SetTitle(XTitle.Data());
+    hPred3->GetXaxis()->SetLabelOffset(0.005);
+    hPred3->GetXaxis()->SetTitleOffset(  0.9);
   } else {
     hPred1->GetXaxis()->SetTitle(Form("%s [%s]",XTitle.Data(),units.Data()));
     hPred1->GetXaxis()->SetLabelOffset(0.00);
@@ -205,6 +240,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
     hPred2->GetXaxis()->SetTitle(Form("%s [%s]",XTitle.Data(),units.Data()));
     hPred2->GetXaxis()->SetLabelOffset(0.00);
     hPred2->GetXaxis()->SetTitleOffset(  1.1);
+    hPred3->GetXaxis()->SetTitle(Form("%s [%s]",XTitle.Data(),units.Data()));
+    hPred3->GetXaxis()->SetLabelOffset(0.00);
+    hPred3->GetXaxis()->SetTitleOffset(  1.1);
   }
 
   TString theYTitle = "#sigma / GeV [pb]";
@@ -259,6 +297,23 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hPred2->GetXaxis()->SetTitleSize  (0.060);
   hPred2->GetXaxis()->SetTickLength (0.07 );
  
+  hPred3->GetYaxis()->SetTitle(theYTitle.Data());
+  hPred3->GetYaxis()->SetLabelFont  (   62);
+  hPred3->GetYaxis()->SetLabelOffset(0.015);
+  hPred3->GetYaxis()->SetLabelSize  (0.060);
+  hPred3->GetYaxis()->SetNdivisions (  505);
+  hPred3->GetYaxis()->SetTitleFont  (   62);
+  hPred3->GetYaxis()->SetTitleOffset(  1.0);
+  hPred3->GetYaxis()->SetTitleSize  (0.080);
+  hPred3->GetYaxis()->SetTickLength (0.03 );
+
+  hPred3->GetXaxis()->SetLabelFont  (   62);
+  hPred3->GetXaxis()->SetLabelSize  (0.040);
+  hPred3->GetXaxis()->SetNdivisions (  505);
+  hPred3->GetXaxis()->SetTitleFont  (   62);
+  hPred3->GetXaxis()->SetTitleSize  (0.060);
+  hPred3->GetXaxis()->SetTickLength (0.07 );
+ 
   hData->SetMarkerSize(0.8);
   hData->SetMarkerStyle(kFullCircle);
   hData->SetLineColor  (kBlack);
@@ -267,11 +322,15 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hPred1->SetMarkerStyle(3);
   hPred1->SetMarkerColor(kBlack);
 
-  hPred1->SetLineColor(kBlue);
-  hPred1->SetMarkerStyle(2);
-  hPred1->SetMarkerColor(kBlue);
+  hPred2->SetLineColor(kBlue);
+  hPred2->SetMarkerStyle(2);
+  hPred2->SetMarkerColor(kBlue);
 
-  TAxis *xa = hData->GetXaxis(); TAxis *xb = hPred1->GetXaxis(); TAxis *xc = hPred2->GetXaxis();
+  hPred3->SetLineColor(kRed);
+  hPred3->SetMarkerStyle(4);
+  hPred3->SetMarkerColor(kRed);
+
+  TAxis *xa = hData->GetXaxis(); TAxis *xb = hPred1->GetXaxis(); TAxis *xc = hPred2->GetXaxis(); TAxis *xd = hPred3->GetXaxis();
   if     (keyLabel0.Contains("N0JET")){
    xa->SetBinLabel(1 ,"p_{T}^{j} < 25 GeV"); xb->SetBinLabel(1 ,"p_{T}^{j} < 25 GeV");
    xa->SetBinLabel(2 ,"p_{T}^{j} < 30 GeV"); xb->SetBinLabel(2 ,"p_{T}^{j} < 30 GeV");
@@ -286,12 +345,19 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   }
   hPred1->SetTitle("");
   hPred2->SetTitle("");
+  hPred3->SetTitle("");
   hData ->SetTitle("");
-  double normalization[3] = {1.0, 1.0, 1.0};
-  if(isNormalized) {normalization[0] = hPred1->GetSumOfWeights(); normalization[1] = hPred2->GetSumOfWeights(); normalization[2] = hData->GetSumOfWeights();};
+  double normalization[4] = {1.0, 1.0, 1.0, 1.0};
+  if(isNormalized) {
+    normalization[0] = hPred1->GetSumOfWeights();
+    normalization[1] = hPred2->GetSumOfWeights();
+    normalization[2] = hPred3->GetSumOfWeights();
+    normalization[3] = hData->GetSumOfWeights();
+  }
   hPred1->Scale(1./normalization[0]);
   hPred2->Scale(1./normalization[1]);
-  hData ->Scale(1./normalization[2]);
+  hPred3->Scale(1./normalization[2]);
+  hData ->Scale(1./normalization[3]);
 
   for(Int_t i=1;i<=hPred1->GetNbinsX();++i){
     if(isDebug) printf("hData (%2d) %7.3f %7.3f\n",i,hData->GetBinContent(i),hData->GetBinError(i));
@@ -301,6 +367,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   else               hPred1->GetYaxis()->SetRangeUser(0.0,hPred1->GetMaximum()*1.4);
   hPred1->Draw("hist,x0");
   hPred2->Draw("hist,x0,same");
+  hPred3->Draw("hist,x0,same");
   hData->Draw("epx0,same");
 
   bool plotSystErrorBars = true;
@@ -336,8 +403,25 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
     //TExec *setex1 = new TExec("setex1","gStyle->SetErrorX(0)");
     //setex1->Draw();
   }
+  TGraphAsymmErrors * gsyst3 = new TGraphAsymmErrors(hPred3);
+  if(plotSystErrorBars == true) {
+    for (int i = 0; i < gsyst2->GetN(); ++i) {
+      double systBck = 0;
+      gsyst3->SetPointEYlow (i, sqrt(hPred3->GetBinError(i+1)*hPred3->GetBinError(i+1)+hPred3->GetBinContent(i+1)*hPred3->GetBinContent(i+1)*systBck*systBck));
+      gsyst3->SetPointEYhigh(i, sqrt(hPred3->GetBinError(i+1)*hPred3->GetBinError(i+1)+hPred3->GetBinContent(i+1)*hPred3->GetBinContent(i+1)*systBck*systBck));
+    }
+    gsyst3->SetFillColor(theFillColor3);
+    gsyst3->SetFillStyle(theFillStyle3);
+    gsyst3->SetMarkerSize(0);
+    gsyst3->SetLineWidth(0);
+    gsyst3->SetLineColor(kWhite);
+    gsyst3->Draw("E2same");
+    //TExec *setex1 = new TExec("setex1","gStyle->SetErrorX(0)");
+    //setex1->Draw();
+  }
   hPred1->Draw("hist,x0,same");
   hPred2->Draw("hist,x0,same");
+  hPred3->Draw("hist,x0,same");
   hData->Draw("epx0,same");
 
   TH1D* hColorDummy1 = (TH1D*) hPred1->Clone();
@@ -347,6 +431,10 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   TH1D* hColorDummy2 = (TH1D*) hPred2->Clone();
   hColorDummy2->SetFillColor(theFillColor2);
   hColorDummy2->SetFillStyle(theFillStyle2);
+
+  TH1D* hColorDummy3 = (TH1D*) hPred3->Clone();
+  hColorDummy3->SetFillColor(theFillColor3);
+  hColorDummy3->SetFillStyle(theFillStyle3);
 
   gStyle->SetOptStat(0);
   TLegend* legend = new TLegend(0.58,0.65,0.78,0.85);
@@ -358,6 +446,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   legend->AddEntry(hData,  "Data", "ep");
   legend->AddEntry(hColorDummy1, "POWHEG+PYTHIA", "lf");
   legend->AddEntry(hColorDummy2, "MATRIX", "lf");
+  legend->AddEntry(hColorDummy3, "MINLO+PYTHIA", "lf");
   legend->Draw();
 
   CMS_lumi( pad1, 2022, 11 );
@@ -400,7 +489,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
       hBand->SetBinError  (i,hNum->GetBinError(i)/hNum->GetBinContent(i)); 
   }
   units = units.ReplaceAll("BIN","");
-  atributes(hRatio,XTitle.Data(),"#frac{POWHEG}{Data}",units.Data());
+  atributes(hRatio,"","#frac{POWHEG}{Data}",units.Data());
 
   hRatio->Draw("ex0");
   hBand->SetFillColor(theFillColor1);
@@ -409,12 +498,12 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hBand->SetLineWidth(0);
   hBand->Draw("E2same");
 
-  TLegend* leg = new TLegend(0.20,0.70,0.30,0.85);                                                    
+  TLegend* leg = new TLegend(0.20,0.65,0.30,0.85);                                                    
   leg->SetBorderSize(	 0);
   leg->SetFillColor (	 0);
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
-  leg->SetTextSize  (0.060);
+  leg->SetTextSize  (0.115);
   leg->AddEntry(hBand,"Theo. uncertainty","f");
   leg->AddEntry(hRatio,"Theo. prediction / measurement","pe");
   leg->Draw();
@@ -476,7 +565,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
       hBand->SetBinError  (i,hNum->GetBinError(i)/hNum->GetBinContent(i)); 
   }
   units = units.ReplaceAll("BIN","");
-  atributes(hRatio,XTitle.Data(),"#frac{MATRIX}{Data}",units.Data());
+  atributes(hRatio,"","#frac{MATRIX}{Data}",units.Data());
 
   hRatio->Draw("ex0");
   hBand->SetFillColor(theFillColor2);
@@ -485,12 +574,87 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hBand->SetLineWidth(0);
   hBand->Draw("E2same");
 
-  TLegend* leg = new TLegend(0.20,0.70,0.30,0.85);                                                    
+  TLegend* leg = new TLegend(0.20,0.65,0.30,0.85);                                                    
   leg->SetBorderSize(	 0);
   leg->SetFillColor (	 0);
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
-  leg->SetTextSize  (0.060);
+  leg->SetTextSize  (0.115);
+  leg->AddEntry(hBand,"Theo. uncertainty","f");
+  leg->AddEntry(hRatio,"Theo. prediction / measurement","pe");
+  leg->Draw();
+
+  // Draw a line throgh y=0
+  double theLines[2] = {1.0, 0.5};
+  TLine* baseline = new TLine(hRatio->GetXaxis()->GetXmin(), theLines[0],
+                              hRatio->GetXaxis()->GetXmax(), theLines[0]);
+  baseline->SetLineStyle(kDashed);
+  baseline->Draw();
+  hRatio->Draw("ex0,same");
+  // Set the y-axis range symmetric around y=0
+  Double_t dy = TMath::Max(TMath::Abs(hRatio->GetMaximum()),
+                           TMath::Abs(hRatio->GetMinimum())) + theLines[1];
+  // Double_t dy = TMath::Max(TMath::Abs(TMath::Abs(hRatio->GetMaximum())-1),TMath::Abs(TMath::Abs(hRatio->GetMinimum()))-1);
+  double maxValue = 1.999;
+  if(keyLabel0.Contains("NJETS")) maxValue = 1.999;
+  hRatio->GetYaxis()->SetRangeUser(0.201,maxValue);
+  hRatio->GetYaxis()->CenterTitle();
+  } // End Pred2
+
+
+  { // Pred3
+  pad4->cd();
+  gStyle->SetOptStat(0);
+
+  TH1D* hNum = (TH1D*) hPred3->Clone(); hNum->Reset();
+  TH1D* hDen = (TH1D*) hData ->Clone(); hDen->Reset();
+
+  TH1D* hRatio = (TH1D*) hPred3->Clone(); hRatio->Reset();
+  TH1D* hBand  = (TH1D*) hData ->Clone(); hBand ->Reset();
+
+  hNum->Add(hPred3);
+  hDen->Add(hData);
+
+  double pull; 
+  double pullerr;
+  double pullinv; 
+  double pullinverr;
+
+  for(int i=1; i<=hNum->GetNbinsX(); i++){
+      pull = 1.0; pullerr = 0.0;
+      pullinv = 1.0; pullinverr = 0.0;
+      if(hNum->GetBinContent(i) > 0 && hDen->GetBinContent(i) > 0){
+        pull = (hNum->GetBinContent(i)/hDen->GetBinContent(i));
+        pullerr = hDen->GetBinError(i)/hDen->GetBinContent(i);
+        pullinv = (hDen->GetBinContent(i)/hNum->GetBinContent(i));
+        pullinverr = pullinv*hDen->GetBinError(i)/hDen->GetBinContent(i);
+      }
+      else {
+        printf("0 events in %d\n",i);
+      }
+      if(isDebug) printf("ratio(%2d): pred/data = %.3f +/- %.3f predUnc: %.3f\n",i,pull,pullerr,hNum->GetBinError(i)/hNum->GetBinContent(i));
+      if(isDebug) printf("ratio(%2d): data/pred = %.3f +/- %.3f, sigma = %.3f pb\n",i,pullinv,pullinverr,hNum->GetBinContent(i));
+      hRatio->SetBinContent(i,pull);
+      hRatio->SetBinError(i,pullerr);
+      hBand->SetBinContent(i,1);
+      hBand->SetBinError  (i,hNum->GetBinError(i)/hNum->GetBinContent(i)); 
+  }
+  units = units.ReplaceAll("BIN","");
+  atributes(hRatio,XTitle.Data(),"#frac{MINNLO}{Data}",units.Data());
+
+  hRatio->Draw("ex0");
+  hBand->SetFillColor(theFillColor3);
+  hBand->SetFillStyle(theFillStyle3);
+  hBand->SetMarkerSize(0);
+  hBand->SetLineWidth(0);
+  hBand->Draw("E2same");
+
+  TLegend* leg = new TLegend(0.20,0.65,0.30,0.85);                                                    
+  leg->SetBorderSize(	 0);
+  leg->SetFillColor (	 0);
+  leg->SetTextAlign (	12);
+  leg->SetTextFont  (	62);
+  leg->SetTextSize  (0.115);
   leg->AddEntry(hBand,"Theo. uncertainty","f");
   leg->AddEntry(hRatio,"Theo. prediction / measurement","pe");
   leg->Draw();
