@@ -446,7 +446,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   legend->AddEntry(hData,  "Data", "ep");
   legend->AddEntry(hColorDummy1, "POWHEG+PYTHIA", "lf");
   legend->AddEntry(hColorDummy2, "MATRIX", "lf");
-  legend->AddEntry(hColorDummy3, "MINLO+PYTHIA", "lf");
+  legend->AddEntry(hColorDummy3, "MINNLO+PYTHIA", "lf");
   legend->Draw();
 
   CMS_lumi( pad1, 2022, 11 );
