@@ -339,9 +339,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
    xa->SetBinLabel(5 ,"p_{T}^{j} < 60 GeV"); xb->SetBinLabel(5 ,"p_{T}^{j} < 60 GeV");
   }
   else if(keyLabel0.Contains("NJETS")){
-   xa->SetBinLabel(1 ,"0");      xb->SetBinLabel(1 ,"0");      xc->SetBinLabel(1 ,"0");
-   xa->SetBinLabel(2 ,"1");      xb->SetBinLabel(2 ,"1");      xc->SetBinLabel(2 ,"1");
-   xa->SetBinLabel(3 ,"#geq 2"); xb->SetBinLabel(3 ,"#geq 2"); xc->SetBinLabel(3 ,"#geq 2");
+   xa->SetBinLabel(1 ,"0");      xb->SetBinLabel(1 ,"0");      xc->SetBinLabel(1 ,"0");      xd->SetBinLabel(1 ,"0");
+   xa->SetBinLabel(2 ,"1");      xb->SetBinLabel(2 ,"1");      xc->SetBinLabel(2 ,"1");      xd->SetBinLabel(2 ,"1");
+   xa->SetBinLabel(3 ,"#geq 2"); xb->SetBinLabel(3 ,"#geq 2"); xc->SetBinLabel(3 ,"#geq 2"); xd->SetBinLabel(3 ,"#geq 2");
   }
   hPred1->SetTitle("");
   hPred2->SetTitle("");
