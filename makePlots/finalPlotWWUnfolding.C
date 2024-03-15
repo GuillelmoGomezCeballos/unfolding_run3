@@ -504,8 +504,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
   leg->SetTextSize  (0.115);
-  leg->AddEntry(hBand,"Theo. uncertainty","f");
-  leg->AddEntry(hRatio,"Theo. prediction / measurement","pe");
+  leg->AddEntry(hBand,"Theory uncertainty","f");
+  leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
 
   // Draw a line throgh y=0
@@ -580,8 +580,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
   leg->SetTextSize  (0.115);
-  leg->AddEntry(hBand,"Theo. uncertainty","f");
-  leg->AddEntry(hRatio,"Theo. prediction / measurement","pe");
+  leg->AddEntry(hBand,"Theory uncertainty","f");
+  leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
 
   // Draw a line throgh y=0
@@ -655,8 +655,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
   leg->SetTextSize  (0.115);
-  leg->AddEntry(hBand,"Theo. uncertainty","f");
-  leg->AddEntry(hRatio,"Theo. prediction / measurement","pe");
+  leg->AddEntry(hBand,"Theory uncertainty","f");
+  leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
 
   // Draw a line throgh y=0
