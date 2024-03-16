@@ -195,21 +195,21 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
 
   TCanvas *c1 = new TCanvas("c1", "c1", ww, wh);
 
-  TPad* pad1 = new TPad("pad1", "pad1", 0, 0.470, 1, 0.975);
-  TPad* pad2 = new TPad("pad2", "pad2", 0, 0.320, 1, 0.465);
-  TPad* pad3 = new TPad("pad3", "pad3", 0, 0.170, 1, 0.315);
-  TPad* pad4 = new TPad("pad4", "pad4", 0, 0.000, 1, 0.165);
+  TPad* pad1 = new TPad("pad1", "pad1", 0, 0.480, 1, 0.975);
+  TPad* pad2 = new TPad("pad2", "pad2", 0, 0.325, 1, 0.480);
+  TPad* pad3 = new TPad("pad3", "pad3", 0, 0.170, 1, 0.325);
+  TPad* pad4 = new TPad("pad4", "pad4", 0, 0.000, 1, 0.170);
 
   pad1->SetTopMargin   (0.08);
   pad1->SetBottomMargin(0.00);  // 0.02
 
-  pad2->SetTopMargin   (0.02);  // 0.08
-  pad2->SetBottomMargin(0.20);  // 0.35
+  pad2->SetTopMargin   (0.00);  // 0.08
+  pad2->SetBottomMargin(0.00);  // 0.35
 
-  pad3->SetTopMargin   (0.02);  // 0.08
-  pad3->SetBottomMargin(0.20);  // 0.35
+  pad3->SetTopMargin   (0.00);  // 0.08
+  pad3->SetBottomMargin(0.00);  // 0.35
 
-  pad4->SetTopMargin   (0.02);  // 0.08
+  pad4->SetTopMargin   (0.00);  // 0.08
   pad4->SetBottomMargin(0.30);  // 0.35
 
   pad1->Draw();
