@@ -33,22 +33,22 @@ void atributes(TH1D *histo, TString xtitle = "", TString ytitle = "Fraction", TS
   } else {
     histo->GetXaxis()->SetTitle(Form("%s [%s]",xtitle.Data(),units.Data()));
   }
-  histo->GetXaxis()->SetLabelFont  (   62);
+  histo->GetXaxis()->SetLabelFont  (   42);
   histo->GetXaxis()->SetLabelOffset(0.015);
-  if(xtitle == "Number of jets") histo->GetXaxis()->SetLabelSize  (0.150);
+  if(xtitle == "Number of jets") histo->GetXaxis()->SetLabelSize  (0.225);
   else                           histo->GetXaxis()->SetLabelSize  (0.110);
   histo->GetXaxis()->SetNdivisions (  505);
-  histo->GetXaxis()->SetTitleFont  (   62);
+  histo->GetXaxis()->SetTitleFont  (   42);
   histo->GetXaxis()->SetTitleOffset(  1.2);
   histo->GetXaxis()->SetTitleSize  (0.110);
   histo->GetXaxis()->SetTickLength (0.07 );
 
   histo->GetYaxis()->SetTitle(ytitle.Data());
-  histo->GetYaxis()->SetLabelFont  (   62);
+  histo->GetYaxis()->SetLabelFont  (   42);
   histo->GetYaxis()->SetLabelOffset(0.015);
   histo->GetYaxis()->SetLabelSize  (0.090);
   histo->GetYaxis()->SetNdivisions (  505);
-  histo->GetYaxis()->SetTitleFont  (   62);
+  histo->GetYaxis()->SetTitleFont  (   42);
   histo->GetYaxis()->SetTitleOffset(  0.6);
   histo->GetYaxis()->SetTitleSize  (0.120);
   histo->GetYaxis()->SetTickLength (0.03 );
@@ -264,53 +264,53 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   else {printf("PROBLEM!\n"); return;}
 
   hPred1->GetYaxis()->SetTitle(theYTitle.Data());
-  hPred1->GetYaxis()->SetLabelFont  (   62);
+  hPred1->GetYaxis()->SetLabelFont  (   42);
   hPred1->GetYaxis()->SetLabelOffset(0.015);
   hPred1->GetYaxis()->SetLabelSize  (0.060);
   hPred1->GetYaxis()->SetNdivisions (  505);
-  hPred1->GetYaxis()->SetTitleFont  (   62);
+  hPred1->GetYaxis()->SetTitleFont  (   42);
   hPred1->GetYaxis()->SetTitleOffset(  1.0);
   hPred1->GetYaxis()->SetTitleSize  (0.080);
   hPred1->GetYaxis()->SetTickLength (0.03 );
 
-  hPred1->GetXaxis()->SetLabelFont  (   62);
+  hPred1->GetXaxis()->SetLabelFont  (   42);
   hPred1->GetXaxis()->SetLabelSize  (0.040);
   hPred1->GetXaxis()->SetNdivisions (  505);
-  hPred1->GetXaxis()->SetTitleFont  (   62);
+  hPred1->GetXaxis()->SetTitleFont  (   42);
   hPred1->GetXaxis()->SetTitleSize  (0.060);
   hPred1->GetXaxis()->SetTickLength (0.07 );
  
   hPred2->GetYaxis()->SetTitle(theYTitle.Data());
-  hPred2->GetYaxis()->SetLabelFont  (   62);
+  hPred2->GetYaxis()->SetLabelFont  (   42);
   hPred2->GetYaxis()->SetLabelOffset(0.015);
   hPred2->GetYaxis()->SetLabelSize  (0.060);
   hPred2->GetYaxis()->SetNdivisions (  505);
-  hPred2->GetYaxis()->SetTitleFont  (   62);
+  hPred2->GetYaxis()->SetTitleFont  (   42);
   hPred2->GetYaxis()->SetTitleOffset(  1.0);
   hPred2->GetYaxis()->SetTitleSize  (0.080);
   hPred2->GetYaxis()->SetTickLength (0.03 );
 
-  hPred2->GetXaxis()->SetLabelFont  (   62);
+  hPred2->GetXaxis()->SetLabelFont  (   42);
   hPred2->GetXaxis()->SetLabelSize  (0.040);
   hPred2->GetXaxis()->SetNdivisions (  505);
-  hPred2->GetXaxis()->SetTitleFont  (   62);
+  hPred2->GetXaxis()->SetTitleFont  (   42);
   hPred2->GetXaxis()->SetTitleSize  (0.060);
   hPred2->GetXaxis()->SetTickLength (0.07 );
  
   hPred3->GetYaxis()->SetTitle(theYTitle.Data());
-  hPred3->GetYaxis()->SetLabelFont  (   62);
+  hPred3->GetYaxis()->SetLabelFont  (   42);
   hPred3->GetYaxis()->SetLabelOffset(0.015);
   hPred3->GetYaxis()->SetLabelSize  (0.060);
   hPred3->GetYaxis()->SetNdivisions (  505);
-  hPred3->GetYaxis()->SetTitleFont  (   62);
+  hPred3->GetYaxis()->SetTitleFont  (   42);
   hPred3->GetYaxis()->SetTitleOffset(  1.0);
   hPred3->GetYaxis()->SetTitleSize  (0.080);
   hPred3->GetYaxis()->SetTickLength (0.03 );
 
-  hPred3->GetXaxis()->SetLabelFont  (   62);
+  hPred3->GetXaxis()->SetLabelFont  (   42);
   hPred3->GetXaxis()->SetLabelSize  (0.040);
   hPred3->GetXaxis()->SetNdivisions (  505);
-  hPred3->GetXaxis()->SetTitleFont  (   62);
+  hPred3->GetXaxis()->SetTitleFont  (   42);
   hPred3->GetXaxis()->SetTitleSize  (0.060);
   hPred3->GetXaxis()->SetTickLength (0.07 );
  
