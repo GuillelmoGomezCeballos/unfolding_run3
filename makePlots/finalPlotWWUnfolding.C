@@ -196,9 +196,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   TCanvas *c1 = new TCanvas("c1", "c1", ww, wh);
 
   TPad* pad1 = new TPad("pad1", "pad1", 0, 0.480, 1, 0.975);
-  TPad* pad2 = new TPad("pad2", "pad2", 0, 0.325, 1, 0.480);
-  TPad* pad3 = new TPad("pad3", "pad3", 0, 0.170, 1, 0.325);
-  TPad* pad4 = new TPad("pad4", "pad4", 0, 0.000, 1, 0.170);
+  TPad* pad2 = new TPad("pad2", "pad2", 0, 0.330, 1, 0.480);
+  TPad* pad3 = new TPad("pad3", "pad3", 0, 0.180, 1, 0.330);
+  TPad* pad4 = new TPad("pad4", "pad4", 0, 0.000, 1, 0.180);
 
   pad1->SetTopMargin   (0.08);
   pad1->SetBottomMargin(0.00);  // 0.02
@@ -654,7 +654,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   leg->SetFillColor (	 0);
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
-  leg->SetTextSize  (0.115);
+  leg->SetTextSize  (0.0905);
   leg->AddEntry(hBand,"Theory uncertainty","f");
   leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
