@@ -519,9 +519,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   Double_t dy = TMath::Max(TMath::Abs(hRatio->GetMaximum()),
                            TMath::Abs(hRatio->GetMinimum())) + theLines[1];
   // Double_t dy = TMath::Max(TMath::Abs(TMath::Abs(hRatio->GetMaximum())-1),TMath::Abs(TMath::Abs(hRatio->GetMinimum()))-1);
-  double maxValue = 1.999;
-  if(keyLabel0.Contains("NJETS")) maxValue = 1.999;
-  hRatio->GetYaxis()->SetRangeUser(0.201,maxValue);
+  double maxValue = 1.499;
+  if(keyLabel0.Contains("NJETS")) maxValue = 1.499;
+  hRatio->GetYaxis()->SetRangeUser(0.601,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   eraselabel(pad1,hData->GetXaxis()->GetLabelSize());
   eraselabel(pad2,hRatio->GetXaxis()->GetLabelSize());
@@ -595,9 +595,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   Double_t dy = TMath::Max(TMath::Abs(hRatio->GetMaximum()),
                            TMath::Abs(hRatio->GetMinimum())) + theLines[1];
   // Double_t dy = TMath::Max(TMath::Abs(TMath::Abs(hRatio->GetMaximum())-1),TMath::Abs(TMath::Abs(hRatio->GetMinimum()))-1);
-  double maxValue = 1.999;
-  if(keyLabel0.Contains("NJETS")) maxValue = 1.999;
-  hRatio->GetYaxis()->SetRangeUser(0.201,maxValue);
+  double maxValue = 1.499;
+  if(keyLabel0.Contains("NJETS")) maxValue = 1.499;
+  hRatio->GetYaxis()->SetRangeUser(0.601,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   } // End Pred2
 
@@ -670,9 +670,9 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   Double_t dy = TMath::Max(TMath::Abs(hRatio->GetMaximum()),
                            TMath::Abs(hRatio->GetMinimum())) + theLines[1];
   // Double_t dy = TMath::Max(TMath::Abs(TMath::Abs(hRatio->GetMaximum())-1),TMath::Abs(TMath::Abs(hRatio->GetMinimum()))-1);
-  double maxValue = 1.999;
-  if(keyLabel0.Contains("NJETS")) maxValue = 1.999;
-  hRatio->GetYaxis()->SetRangeUser(0.201,maxValue);
+  double maxValue = 1.499;
+  if(keyLabel0.Contains("NJETS")) maxValue = 1.499;
+  hRatio->GetYaxis()->SetRangeUser(0.701,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   } // End Pred2
 
