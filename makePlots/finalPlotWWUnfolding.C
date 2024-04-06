@@ -39,8 +39,8 @@ void atributes(TH1D *histo, TString xtitle = "", TString ytitle = "Fraction", TS
   else                           histo->GetXaxis()->SetLabelSize  (0.110);
   histo->GetXaxis()->SetNdivisions (  505);
   histo->GetXaxis()->SetTitleFont  (   42);
-  histo->GetXaxis()->SetTitleOffset(  1.2);
-  histo->GetXaxis()->SetTitleSize  (0.110);
+  histo->GetXaxis()->SetTitleOffset(  0.9);
+  histo->GetXaxis()->SetTitleSize  (0.150);
   histo->GetXaxis()->SetTickLength (0.07 );
 
   histo->GetYaxis()->SetTitle(ytitle.Data());
@@ -246,20 +246,20 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   }
 
   TString theYTitle = "#sigma / GeV [pb]";
-  if     ( isNormalized && keyLabel0.Contains("NJETS"))  theYTitle = "1/#sigma d#sigma/dN_{J}";
-  else if(!isNormalized && keyLabel0.Contains("NJETS"))  theYTitle = "d#sigma/dN_{J}";
+  if     ( isNormalized && keyLabel0.Contains("NJETS"))  theYTitle = "1/#sigma d#sigma/dN_{j}";
+  else if(!isNormalized && keyLabel0.Contains("NJETS"))  theYTitle = "d#sigma/dN_{j}";
   else if(!isNormalized && keyLabel0.Contains("MLL"))    theYTitle = "d#sigma/dm_{ll} [pb/GeV]";
   else if(!isNormalized && keyLabel0.Contains("DPHILL")) theYTitle = "d#sigma/d#Delta#phi_{ll} [pb/rad]";
   else if(!isNormalized && keyLabel0.Contains("PTL1"))   theYTitle = "d#sigma/dp_{T}^{max} [pb/GeV]";
   else if(!isNormalized && keyLabel0.Contains("PTL2"))   theYTitle = "d#sigma/dp_{T}^{min} [pb/GeV]";
   else if(!isNormalized && keyLabel0.Contains("PTLL"))   theYTitle = "d#sigma/dp_{T}^{ll} [pb/GeV]";
-  else if(!isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "d#sigma/dN_{J}";
+  else if(!isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "d#sigma/dN_{j}";
   else if( isNormalized && keyLabel0.Contains("MLL"))    theYTitle = "1/#sigma d#sigma/dm_{ll} [1/bin]";
   else if( isNormalized && keyLabel0.Contains("DPHILL")) theYTitle = "1/#sigma d#sigma/d#Delta#phi_{ll} [1/bin]";
   else if( isNormalized && keyLabel0.Contains("PTL1"))   theYTitle = "1/#sigma d#sigma/dp_{T}^{max} [1/bin]";
   else if( isNormalized && keyLabel0.Contains("PTL2"))   theYTitle = "1/#sigma d#sigma/dp_{T}^{min} [1/bin]";
   else if( isNormalized && keyLabel0.Contains("PTLL"))   theYTitle = "1/#sigma d#sigma/dp_{T}^{ll} [1/bin]";
-  else if( isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "1/#sigma d#sigma/dN_{J}";
+  else if( isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "1/#sigma d#sigma/dN_{j}";
   else if(                 keyLabel0.Contains("N0JET"))  theYTitle = "#sigma [pb]";
   else {printf("PROBLEM!\n"); return;}
 
@@ -498,12 +498,12 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hBand->SetLineWidth(0);
   hBand->Draw("E2same");
 
-  TLegend* leg = new TLegend(0.20,0.65,0.30,0.85);                                                    
+  TLegend* leg = new TLegend(0.20,0.55,0.30,0.85);                                                    
   leg->SetBorderSize(	 0);
   leg->SetFillColor (	 0);
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
-  leg->SetTextSize  (0.115);
+  leg->SetTextSize  (0.140);
   leg->AddEntry(hBand,"Theory uncertainty","f");
   leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
@@ -574,12 +574,12 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   hBand->SetLineWidth(0);
   hBand->Draw("E2same");
 
-  TLegend* leg = new TLegend(0.20,0.65,0.30,0.85);                                                    
+  TLegend* leg = new TLegend(0.20,0.55,0.30,0.85);                                                    
   leg->SetBorderSize(	 0);
   leg->SetFillColor (	 0);
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
-  leg->SetTextSize  (0.115);
+  leg->SetTextSize  (0.140);
   leg->AddEntry(hBand,"Theory uncertainty","f");
   leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
@@ -654,7 +654,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   leg->SetFillColor (	 0);
   leg->SetTextAlign (	12);
   leg->SetTextFont  (	62);
-  leg->SetTextSize  (0.0905);
+  leg->SetTextSize  (0.120);
   leg->AddEntry(hBand,"Theory uncertainty","f");
   leg->AddEntry(hRatio,"Theory prediction / measurement","pe");
   leg->Draw();
