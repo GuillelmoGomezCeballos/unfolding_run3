@@ -46,7 +46,7 @@ void atributes(TH1D *histo, TString xtitle = "", TString ytitle = "Fraction", TS
   histo->GetYaxis()->SetTitle(ytitle.Data());
   histo->GetYaxis()->SetLabelFont  (   42);
   histo->GetYaxis()->SetLabelOffset(0.015);
-  histo->GetYaxis()->SetLabelSize  (0.090);
+  histo->GetYaxis()->SetLabelSize  (0.160);
   histo->GetYaxis()->SetNdivisions (  505);
   histo->GetYaxis()->SetTitleFont  (   42);
   histo->GetYaxis()->SetTitleOffset(  0.6);
@@ -446,7 +446,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
   legend->AddEntry(hData,  "Data", "ep");
   legend->AddEntry(hColorDummy1, "POWHEG+PYTHIA", "lf");
   legend->AddEntry(hColorDummy2, "MATRIX", "lf");
-  legend->AddEntry(hColorDummy3, "MINNLO+PYTHIA", "lf");
+  legend->AddEntry(hColorDummy3, "MiNNLO+PYTHIA", "lf");
   legend->Draw();
 
   CMS_lumi( pad1, 2022, 11 );
@@ -640,7 +640,7 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
       hBand->SetBinError  (i,hNum->GetBinError(i)/hNum->GetBinContent(i)); 
   }
   units = units.ReplaceAll("BIN","");
-  atributes(hRatio,XTitle.Data(),"#frac{MINNLO}{Data}",units.Data());
+  atributes(hRatio,XTitle.Data(),"#frac{MiNNLO}{Data}",units.Data());
 
   hRatio->Draw("ex0");
   hBand->SetFillColor(theFillColor3);
