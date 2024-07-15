@@ -233,7 +233,8 @@ void finalPlotWWUnfolding(TString keyLabel0 = "MLL", bool isNormalized = false, 
     hPred3->GetXaxis()->SetTitle(XTitle.Data());
     hPred3->GetXaxis()->SetLabelOffset(0.005);
     hPred3->GetXaxis()->SetTitleOffset(  0.9);
-  } else {
+  } 
+  else {
     hPred1->GetXaxis()->SetTitle(Form("%s [%s]",XTitle.Data(),units.Data()));
     hPred1->GetXaxis()->SetLabelOffset(0.00);
     hPred1->GetXaxis()->SetTitleOffset(  1.1);
