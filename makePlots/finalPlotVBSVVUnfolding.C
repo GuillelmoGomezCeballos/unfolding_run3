@@ -78,12 +78,12 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   else if( isNormalized && keyLabel0.Contains("DELTAPHIJJ")) theYTitle = "1/#sigma d#sigma/d#Delta#phi_{jj} [1/bin]";
   else {printf("PROBLEM!\n"); return;}
 
-  if     (keyLabel0 == "VBSWZMJJ"       ) {XTitle = "m_{jj}";}
-  else if(keyLabel0 == "VBSWWMJJ"       ) {XTitle = "m_{jj}";}
-  else if(keyLabel0 == "VBSWWMLL"       ) {XTitle = "m_{ll}";}
-  else if(keyLabel0 == "VBSWWNJET"      ) {XTitle = "Number of jets"; units = "";}
-  else if(keyLabel0 == "VBSWWDELTAETAJJ") {XTitle = "#Delta#eta_{jj}"; units = "";}
-  else if(keyLabel0 == "VBSWWDELTAPHIJJ") {XTitle = "#Delta#phi_{jj}"; units = "";}
+  if     (keyLabel0 == "EWKWZMJJ"       ) {XTitle = "m_{jj}";}
+  else if(keyLabel0 == "EWKWWMJJ"       ) {XTitle = "m_{jj}";}
+  else if(keyLabel0 == "EWKWWMLL"       ) {XTitle = "m_{ll}";}
+  else if(keyLabel0 == "EWKWWNJET"      ) {XTitle = "Number of jets"; units = "";}
+  else if(keyLabel0 == "EWKWWDELTAETAJJ") {XTitle = "#Delta#eta_{jj}"; units = "";}
+  else if(keyLabel0 == "EWKWWDELTAPHIJJ") {XTitle = "#Delta#phi_{jj}"; units = "";}
 
   gInterpreter->ExecuteMacro("PaperStyle.C");
   gStyle->SetOptStat(0);

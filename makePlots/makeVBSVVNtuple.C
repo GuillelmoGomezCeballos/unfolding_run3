@@ -24,12 +24,13 @@ void makeVBSVVResult(TString type, bool isNormalized = false){
 
   TString xsfname(Form("input_files/%s",type.Data()));
   TH1D* histoResult;
-  if     (type == "VBSWZMJJ")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWZMJJ       );}
-  else if(type == "VBSWWMJJ")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWMJJ       );}
-  else if(type == "VBSWWMLL")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWMLL       );}
-  else if(type == "VBSWWNJET")       {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin2, xbinsWWNJET      );}
-  else if(type == "VBSWWDELTAETAJJ") {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWDELTAETAJJ);}
-  else if(type == "VBSWWDELTAPHIJJ") {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWDELTAPHIJJ);}
+  if     (type == "EWKWZMJJ")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWZMJJ       );}
+  else if(type == "EWKWWMJJ")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWMJJ       );}
+  else if(type == "EWKWWMLL")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWMLL       );}
+  else if(type == "EWKWWNJET")       {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin2, xbinsWWNJET      );}
+  else if(type == "EWKWWDELTAETAJJ") {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWDELTAETAJJ);}
+  else if(type == "EWKWWDELTAPHIJJ") {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWWDELTAPHIJJ);}
+  else if(type == "QCDWZMJJ")        {histoResult = new TH1D(Form("hD%s",type.Data()), Form("hD%s",type.Data()), nBin4, xbinsWZMJJ       );}
   else {printf("WRONG TYPE\n"); return;}
 
   printf("Making %s ...\n",type.Data());
@@ -61,10 +62,10 @@ void makeVBSVVResult(TString type, bool isNormalized = false){
 }
 
 void makeVBSVVNtuple(){
- makeVBSVVResult("VBSWZMJJ"        , false);
- makeVBSVVResult("VBSWWMJJ"        , false);
- makeVBSVVResult("VBSWWMLL"        , false);
- makeVBSVVResult("VBSWWNJET"       , false);
- makeVBSVVResult("VBSWWDELTAETAJJ" , false);
- makeVBSVVResult("VBSWWDELTAPHIJJ" , false);
+ makeVBSVVResult("EWKWZMJJ"        , false);
+ makeVBSVVResult("EWKWWMJJ"        , false);
+ makeVBSVVResult("EWKWWMLL"        , false);
+ makeVBSVVResult("EWKWWNJET"       , false);
+ makeVBSVVResult("EWKWWDELTAETAJJ" , false);
+ makeVBSVVResult("EWKWWDELTAPHIJJ" , false);
 }
