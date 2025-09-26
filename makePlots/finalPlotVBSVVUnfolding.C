@@ -327,8 +327,9 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
                            TMath::Abs(hRatio->GetMinimum())) + theLines[1];
   // Double_t dy = TMath::Max(TMath::Abs(TMath::Abs(hRatio->GetMaximum())-1),TMath::Abs(TMath::Abs(hRatio->GetMinimum()))-1);
   double maxValue = 1.499;
-  if(keyLabel0.Contains("NJETS")) maxValue = 1.499;
-  hRatio->GetYaxis()->SetRangeUser(0.601,maxValue);
+  double minValue = 0.601;
+  if(keyLabel0.Contains("WZ")) {maxValue = 1.850; minValue = 0.150;}
+  hRatio->GetYaxis()->SetRangeUser(minValue,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   eraselabel(pad1,hData->GetXaxis()->GetLabelSize());
   eraselabel(pad2,hRatio->GetXaxis()->GetLabelSize());
