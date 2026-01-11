@@ -68,4 +68,11 @@ void makeVBSVVNtuple(){
  makeVBSVVResult("EWKWWNJET"       , false);
  makeVBSVVResult("EWKWWDELTAETAJJ" , false);
  makeVBSVVResult("EWKWWDELTAPHIJJ" , false);
+
+ makeVBSVVResult("EWKWZMJJ"        , true);
+ makeVBSVVResult("EWKWWMJJ"        , true);
+ makeVBSVVResult("EWKWWMLL"        , true);
+ makeVBSVVResult("EWKWWNJET"       , true);
+ makeVBSVVResult("EWKWWDELTAETAJJ" , true);
+ makeVBSVVResult("EWKWWDELTAPHIJJ" , true);
 }
