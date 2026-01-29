@@ -406,7 +406,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   double maxValue = 1.499;
   double minValue = 0.601;
   if     (keyLabel0.Contains("WZ")) {maxValue = 1.850; minValue = 0.150;}
-  else if(keyLabel0.Contains("NJET")) {maxValue = 1.850; minValue = 0.601;}
+  else if(keyLabel0.Contains("NJET")) {maxValue = 1.999; minValue = 0.601;}
   hRatio->GetYaxis()->SetRangeUser(minValue,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   eraselabel(pad1,hData->GetXaxis()->GetLabelSize());
@@ -486,7 +486,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   double maxValue = 1.499;
   double minValue = 0.601;
   if     (keyLabel0.Contains("WZ")) {maxValue = 1.850; minValue = 0.150;}
-  else if(keyLabel0.Contains("NJET")) {maxValue = 1.850; minValue = 0.601;}
+  else if(keyLabel0.Contains("NJET")) {maxValue = 1.999; minValue = 0.601;}
   hRatio->GetYaxis()->SetRangeUser(minValue,maxValue);
   hRatio->GetYaxis()->CenterTitle();
   eraselabel(pad1,hData->GetXaxis()->GetLabelSize());
