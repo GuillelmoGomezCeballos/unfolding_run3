@@ -328,7 +328,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   legend->SetTextSize  (0.040);
   legend->AddEntry(hData,  "Data", "ep");
   legend->AddEntry(hColorDummy1, "MADGRAPH+PYTHIA", "lf");
-  legend->AddEntry(hColorDummy2, "SHERPA+PYTHIA", "lf");
+  legend->AddEntry(hColorDummy2, "SHERPA", "lf");
   legend->Draw();
 
   CMS_lumi( pad1, 2027, 11 );
