@@ -95,7 +95,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   const int theFillColor1 = 12;
   const int theFillStyle1 = 3345;
   const int theFillColor2 = 27;
-  const int theFillStyle2 = 3005;
+  const int theFillStyle2 = 3004;
   const int theFillColor3 = 46;
   const int theFillStyle3 = 3007;
 
@@ -454,8 +454,8 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   atributes(hRatio,XTitle.Data(),"#frac{SHERPA}{Data}",units.Data());
 
   hRatio->Draw("ex0");
-  hBand->SetFillColor(theFillColor1);
-  hBand->SetFillStyle(theFillStyle1);
+  hBand->SetFillColor(theFillColor2);
+  hBand->SetFillStyle(theFillStyle2);
   hBand->SetMarkerSize(0);
   hBand->SetLineWidth(0);
   hBand->Draw("E2same");
