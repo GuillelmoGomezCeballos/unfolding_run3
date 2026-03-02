@@ -94,12 +94,12 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   else if( isNormalized && keyLabel0.Contains("DELTAPHIJJ")) theYTitle = "1/#sigma d#sigma/d#Delta#phi_{jj} [1/bin]";
   else {printf("PROBLEM!\n"); return;}
 
-  if     (keyLabel0 == "EWKWZMJJ"       ) {XTitle = "m_{jj}";}
-  else if(keyLabel0 == "EWKWWMJJ"       ) {XTitle = "m_{jj}";}
-  else if(keyLabel0 == "EWKWWMLL"       ) {XTitle = "m_{ll}";}
-  else if(keyLabel0 == "EWKWWNJET"      ) {XTitle = "Number of jets"; units = "";}
-  else if(keyLabel0 == "EWKWWDELTAETAJJ") {XTitle = "#Delta#eta_{jj}"; units = "";}
-  else if(keyLabel0 == "EWKWWDELTAPHIJJ") {XTitle = "#Delta#phi_{jj}"; units = "";}
+  if     (keyLabel0.Contains("WZMJJ")	    ) {XTitle = "m_{jj}";}
+  else if(keyLabel0.Contains("WWMJJ")	    ) {XTitle = "m_{jj}";}
+  else if(keyLabel0.Contains("WWMLL")	    ) {XTitle = "m_{ll}";}
+  else if(keyLabel0.Contains("WWNJET")	    ) {XTitle = "Number of jets"; units = "";}
+  else if(keyLabel0.Contains("WWDELTAETAJJ")) {XTitle = "#Delta#eta_{jj}"; units = "";}
+  else if(keyLabel0.Contains("WWDELTAPHIJJ")) {XTitle = "#Delta#phi_{jj}"; units = "";}
 
   gInterpreter->ExecuteMacro("PaperStyle.C");
   gStyle->SetOptStat(0);
@@ -115,28 +115,32 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   const int theFillColor3 = 46;
   const int theFillStyle3 = 3007;
 
-  TString genFileName1 = "histogen_vbsvv_mapgraph_noewkcorr.root";
+  TString keyLabel1 = keyLabel0; keyLabel1.ReplaceAll("QCD","");
+
+  TString genFileName1 = "histogen_vbsvv_ewk_mapgraph_noewkcorr.root";
+  if(keyLabel0.Contains("QCD")) genFileName1 = "histogen_vbsvv_ewkqcdint_mapgraph_noewkcorr.root";
   TFile *_fileGenWW1 = TFile::Open(genFileName1.Data());
-  TH1D* hPred1     = (TH1D*)_fileGenWW1->Get(Form("hD%s",keyLabel0.Data()));     hPred1    ->SetDirectory(0);
-  TH1D* hPred1_PDF = (TH1D*)_fileGenWW1->Get(Form("hD%s_PDF",keyLabel0.Data())); hPred1_PDF->SetDirectory(0);
-  TH1D* hPred1_QCD = (TH1D*)_fileGenWW1->Get(Form("hD%s_QCD",keyLabel0.Data())); hPred1_QCD->SetDirectory(0);
-  TH1D* hPred1_PS  = (TH1D*)_fileGenWW1->Get(Form("hD%s_PS",keyLabel0.Data()));  hPred1_PS ->SetDirectory(0);
+  TH1D* hPred1     = (TH1D*)_fileGenWW1->Get(Form("hD%s",keyLabel1.Data()));     hPred1    ->SetDirectory(0);
+  TH1D* hPred1_PDF = (TH1D*)_fileGenWW1->Get(Form("hD%s_PDF",keyLabel1.Data())); hPred1_PDF->SetDirectory(0);
+  TH1D* hPred1_QCD = (TH1D*)_fileGenWW1->Get(Form("hD%s_QCD",keyLabel1.Data())); hPred1_QCD->SetDirectory(0);
+  TH1D* hPred1_PS  = (TH1D*)_fileGenWW1->Get(Form("hD%s_PS",keyLabel1.Data()));  hPred1_PS ->SetDirectory(0);
   _fileGenWW1->Close();
 
-  TString genFileName2 = "histogen_vbsvv_mapgraph.root";
+  TString genFileName2 = "histogen_vbsvv_ewk_mapgraph.root";
+  if(keyLabel0.Contains("QCD")) genFileName1 = "histogen_vbsvv_ewkqcdint_mapgraph.root";
   TFile *_fileGenWW2 = TFile::Open(genFileName2.Data());
-  TH1D* hPred2     = (TH1D*)_fileGenWW2->Get(Form("hD%s",keyLabel0.Data()));     hPred2    ->SetDirectory(0);
-  TH1D* hPred2_PDF = (TH1D*)_fileGenWW2->Get(Form("hD%s_PDF",keyLabel0.Data())); hPred2_PDF->SetDirectory(0);
-  TH1D* hPred2_QCD = (TH1D*)_fileGenWW2->Get(Form("hD%s_QCD",keyLabel0.Data())); hPred2_QCD->SetDirectory(0);
-  TH1D* hPred2_PS  = (TH1D*)_fileGenWW2->Get(Form("hD%s_PS",keyLabel0.Data()));  hPred2_PS ->SetDirectory(0);
+  TH1D* hPred2     = (TH1D*)_fileGenWW2->Get(Form("hD%s",keyLabel1.Data()));     hPred2    ->SetDirectory(0);
+  TH1D* hPred2_PDF = (TH1D*)_fileGenWW2->Get(Form("hD%s_PDF",keyLabel1.Data())); hPred2_PDF->SetDirectory(0);
+  TH1D* hPred2_QCD = (TH1D*)_fileGenWW2->Get(Form("hD%s_QCD",keyLabel1.Data())); hPred2_QCD->SetDirectory(0);
+  TH1D* hPred2_PS  = (TH1D*)_fileGenWW2->Get(Form("hD%s_PS",keyLabel1.Data()));  hPred2_PS ->SetDirectory(0);
   _fileGenWW2->Close();
 
-  TString genFileName3 = "histogen_vbsvv_sherpa_withWZ.root";
+  TString genFileName3 = "histogen_vbsvv_ewk_sherpa.root";
   TFile *_fileGenWW3 = TFile::Open(genFileName3.Data());
-  TH1D* hPred3     = (TH1D*)_fileGenWW3->Get(Form("hD%s",keyLabel0.Data()));     hPred3    ->SetDirectory(0);
-  TH1D* hPred3_PDF = (TH1D*)_fileGenWW3->Get(Form("hD%s_PDF",keyLabel0.Data())); hPred3_PDF->SetDirectory(0);
-  TH1D* hPred3_QCD = (TH1D*)_fileGenWW3->Get(Form("hD%s_QCD",keyLabel0.Data())); hPred3_QCD->SetDirectory(0);
-  TH1D* hPred3_PS  = (TH1D*)_fileGenWW3->Get(Form("hD%s_PS",keyLabel0.Data()));  hPred3_PS ->SetDirectory(0);
+  TH1D* hPred3     = (TH1D*)_fileGenWW3->Get(Form("hD%s",keyLabel1.Data()));     hPred3    ->SetDirectory(0);
+  TH1D* hPred3_PDF = (TH1D*)_fileGenWW3->Get(Form("hD%s_PDF",keyLabel1.Data())); hPred3_PDF->SetDirectory(0);
+  TH1D* hPred3_QCD = (TH1D*)_fileGenWW3->Get(Form("hD%s_QCD",keyLabel1.Data())); hPred3_QCD->SetDirectory(0);
+  TH1D* hPred3_PS  = (TH1D*)_fileGenWW3->Get(Form("hD%s_PS",keyLabel1.Data()));  hPred3_PS ->SetDirectory(0);
   _fileGenWW3->Close();
 
   TString plotName = Form("input_files/xs_%s_normalized%d.root", keyLabel0.Data(), isNormalized);
@@ -357,7 +361,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   else               hPred1->GetYaxis()->SetRangeUser(0.0,theEdges[1]*1.5);
   hPred1->Draw("hist");
   hPred2->Draw("hist,same");
-  hPred3->Draw("hist,same");
+  if(!keyLabel0.Contains("QCD")) hPred3->Draw("hist,same");
   hData->Draw("ep,same");
 
   gStyle->SetOptStat(0);
@@ -370,7 +374,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   legend->AddEntry(hData,  "Data", "pfl");
   legend->AddEntry(hPred1, "MADGRAPH5_aMC@NLO+Pythia8 without NLO corr.", "l");
   legend->AddEntry(hPred2, "MADGRAPH5_aMC@NLO+Pythia8 with NLO corr.", "l");
-  legend->AddEntry(hPred3, "SHERPA 2", "l");
+  if(!keyLabel0.Contains("QCD")) legend->AddEntry(hPred3, "SHERPA 2", "l");
 
   bool plotSystErrorBars = true;
   if(plotSystErrorBars == true) {
@@ -403,7 +407,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   // plotting again
   hPred1->Draw("hist,same");
   hPred2->Draw("hist,same");
-  hPred3->Draw("hist,same");
+  if(!keyLabel0.Contains("QCD")) hPred3->Draw("hist,same");
   hData->Draw("ep,same");
 
   CMS_lumi( pad1, 2027, 11 );
@@ -530,7 +534,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hRatio3->SetLineWidth(5);
   hRatio3->SetLineStyle(3);
   hRatio3->SetLineColor(kMagenta);
-  hRatio3->Draw("same,hist");
+  if(!keyLabel0.Contains("QCD")) hRatio3->Draw("same,hist");
   
   TLegend* leg = new TLegend(0.20,0.70,0.30,0.85);                                                    
   leg ->SetFillStyle(0);
@@ -545,6 +549,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   // plotting again
   hRatio1->Draw("e,same");
   hRatio2->Draw("same,hist,e");
+  if(!keyLabel0.Contains("QCD")) hRatio3->Draw("same,hist,e");
 
   // Draw a line throgh y=0
   double theLines[2] = {1.0, 0.5};
