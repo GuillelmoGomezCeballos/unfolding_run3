@@ -334,7 +334,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hPred3->SetLineStyle(3);
   hPred3->SetMarkerStyle(6);
   hPred3->SetMarkerColor(kMagenta);
-  hPred3->SetLineWidth(3);
+  hPred3->SetLineWidth(4);
 
   TAxis *xa = hData->GetXaxis();
   hPred1->SetTitle("");
@@ -357,7 +357,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   else               hPred1->GetYaxis()->SetRangeUser(0.0,theEdges[1]*1.5);
   hPred1->Draw("hist");
   hPred2->Draw("hist,same");
-  if(keyLabel0 != "EWKWZMJJ") hPred3->Draw("hist,same");
+  hPred3->Draw("hist,same");
   hData->Draw("ep,same");
 
   gStyle->SetOptStat(0);
@@ -370,7 +370,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   legend->AddEntry(hData,  "Data", "pfl");
   legend->AddEntry(hPred1, "MADGRAPH5_aMC@NLO+Pythia8 without NLO corr.", "l");
   legend->AddEntry(hPred2, "MADGRAPH5_aMC@NLO+Pythia8 with NLO corr.", "l");
-  if(keyLabel0 != "EWKWZMJJ") legend->AddEntry(hPred3, "SHERPA 2", "l");
+  legend->AddEntry(hPred3, "SHERPA 2", "l");
 
   bool plotSystErrorBars = true;
   if(plotSystErrorBars == true) {
@@ -403,7 +403,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   // plotting again
   hPred1->Draw("hist,same");
   hPred2->Draw("hist,same");
-  if(keyLabel0 != "EWKWZMJJ") hPred3->Draw("hist,same");
+  hPred3->Draw("hist,same");
   hData->Draw("ep,same");
 
   CMS_lumi( pad1, 2027, 11 );
@@ -527,10 +527,10 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hRatio2->SetLineColor(kBlue);
   hRatio2->Draw("same,hist");
  
-  hRatio3->SetLineWidth(3);
+  hRatio3->SetLineWidth(4);
   hRatio3->SetLineStyle(3);
   hRatio3->SetLineColor(kMagenta);
-  if(keyLabel0 != "EWKWZMJJ") hRatio3->Draw("same,hist");
+  hRatio3->Draw("same,hist");
   
   TLegend* leg = new TLegend(0.20,0.70,0.30,0.85);                                                    
   leg ->SetFillStyle(0);
