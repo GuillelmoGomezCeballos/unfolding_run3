@@ -322,19 +322,19 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hPred1->SetLineColor(kRed+2);
   hPred1->SetMarkerStyle(3);
   hPred1->SetMarkerColor(kRed+2);
-  hPred1->SetLineWidth(3);
+  hPred1->SetLineWidth(5);
 
   hPred2->SetLineColor(kBlue);
   hPred2->SetLineStyle(2);
   hPred2->SetMarkerStyle(5);
   hPred2->SetMarkerColor(kBlue);
-  hPred2->SetLineWidth(3);
+  hPred2->SetLineWidth(5);
 
   hPred3->SetLineColor(kMagenta);
   hPred3->SetLineStyle(3);
   hPred3->SetMarkerStyle(6);
   hPred3->SetMarkerColor(kMagenta);
-  hPred3->SetLineWidth(4);
+  hPred3->SetLineWidth(5);
 
   TAxis *xa = hData->GetXaxis();
   hPred1->SetTitle("");
@@ -522,12 +522,12 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hRatio3->GetXaxis()->SetTitleSize  (0.060);
   hRatio3->GetXaxis()->SetTickLength (0.07 );
  
-  hRatio2->SetLineWidth(3);
+  hRatio2->SetLineWidth(5);
   hRatio2->SetLineStyle(2);
   hRatio2->SetLineColor(kBlue);
   hRatio2->Draw("same,hist");
  
-  hRatio3->SetLineWidth(4);
+  hRatio3->SetLineWidth(5);
   hRatio3->SetLineStyle(3);
   hRatio3->SetLineColor(kMagenta);
   hRatio3->Draw("same,hist");
