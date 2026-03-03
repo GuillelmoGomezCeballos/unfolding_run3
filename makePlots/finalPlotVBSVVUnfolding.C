@@ -127,7 +127,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   _fileGenWW1->Close();
 
   TString genFileName2 = "histogen_vbsvv_ewk_mapgraph.root";
-  if(keyLabel0.Contains("QCD")) genFileName1 = "histogen_vbsvv_ewkqcdint_mapgraph.root";
+  if(keyLabel0.Contains("QCD")) genFileName2 = "histogen_vbsvv_ewkqcdint_mapgraph.root";
   TFile *_fileGenWW2 = TFile::Open(genFileName2.Data());
   TH1D* hPred2     = (TH1D*)_fileGenWW2->Get(Form("hD%s",keyLabel1.Data()));     hPred2    ->SetDirectory(0);
   TH1D* hPred2_PDF = (TH1D*)_fileGenWW2->Get(Form("hD%s_PDF",keyLabel1.Data())); hPred2_PDF->SetDirectory(0);
