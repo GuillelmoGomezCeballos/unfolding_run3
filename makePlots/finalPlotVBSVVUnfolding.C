@@ -307,7 +307,9 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hPred3->GetXaxis()->SetTitleFont  (   42);
   hPred3->GetXaxis()->SetTitleSize  (0.060);
   hPred3->GetXaxis()->SetTickLength (0.07 );
- 
+
+  hData->SetMarkerStyle(kFullCircle);
+  hData->SetMarkerSize(1.0);
   hData->SetFillColor(12);
   hData->SetFillStyle(3003);
   hData->GetYaxis()->SetTitleFont(42);
@@ -370,10 +372,10 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   legend->SetFillColor (    0);
   legend->SetTextAlign (   12);
   legend->SetTextFont  (   62);
-  legend->SetTextSize  (0.040);
+  legend->SetTextSize  (0.050);
   legend->AddEntry(hData,  "Data", "pfl");
-  legend->AddEntry(hPred1, "MADGRAPH5_aMC@NLO+Pythia8 without NLO corr.", "l");
-  legend->AddEntry(hPred2, "MADGRAPH5_aMC@NLO+Pythia8 with NLO corr.", "l");
+  legend->AddEntry(hPred1, "MG5_aMC@NLO+Py8 without NLO corr.", "l");
+  legend->AddEntry(hPred2, "MG5_aMC@NLO+Py8 with NLO corr.", "l");
   if(!keyLabel0.Contains("QCD")) legend->AddEntry(hPred3, "SHERPA 2", "l");
 
   bool plotSystErrorBars = true;
