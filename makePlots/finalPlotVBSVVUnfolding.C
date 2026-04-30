@@ -53,7 +53,7 @@ void atributes(TH1D *histo, TString xtitle = "", TString ytitle = "Fraction", TS
   histo->GetXaxis()->SetLabelOffset(0.015);
   histo->GetXaxis()->SetLabelSize  (0.110);
   histo->GetXaxis()->SetNdivisions (  505);
-  histo->GetXaxis()->SetTitleFont  (   42);
+  histo->GetXaxis()->SetTitleFont  (   62);
   histo->GetXaxis()->SetTitleOffset(  0.9);
   histo->GetXaxis()->SetTitleSize  (0.150);
   histo->GetXaxis()->SetTickLength (0.07 );
@@ -63,7 +63,7 @@ void atributes(TH1D *histo, TString xtitle = "", TString ytitle = "Fraction", TS
   histo->GetYaxis()->SetLabelOffset(0.015);
   histo->GetYaxis()->SetLabelSize  (0.160);
   histo->GetYaxis()->SetNdivisions (  505);
-  histo->GetYaxis()->SetTitleFont  (   42);
+  histo->GetYaxis()->SetTitleFont  (   62);
   histo->GetYaxis()->SetTitleOffset(  0.7);
   histo->GetYaxis()->SetTitleSize  (0.110);
   histo->GetYaxis()->SetTickLength (0.03 );
@@ -265,14 +265,14 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hPred1->GetYaxis()->SetLabelOffset(0.015);
   hPred1->GetYaxis()->SetLabelSize  (0.050);
   hPred1->GetYaxis()->SetNdivisions (  505);
-  hPred1->GetYaxis()->SetTitleFont  (   42);
+  hPred1->GetYaxis()->SetTitleFont  (   62);
   hPred1->GetYaxis()->SetTitleOffset(  1.0);
   hPred1->GetYaxis()->SetTitleSize  (0.080);
   hPred1->GetYaxis()->SetTickLength (0.03 );
   hPred1->GetXaxis()->SetLabelFont  (   42);
   hPred1->GetXaxis()->SetLabelSize  (0.040);
   hPred1->GetXaxis()->SetNdivisions (  505);
-  hPred1->GetXaxis()->SetTitleFont  (   42);
+  hPred1->GetXaxis()->SetTitleFont  (   62);
   hPred1->GetXaxis()->SetTitleSize  (0.060);
   hPred1->GetXaxis()->SetTickLength (0.07 );
  
@@ -281,14 +281,14 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hPred2->GetYaxis()->SetLabelOffset(0.015);
   hPred2->GetYaxis()->SetLabelSize  (0.050);
   hPred2->GetYaxis()->SetNdivisions (  505);
-  hPred2->GetYaxis()->SetTitleFont  (   42);
+  hPred2->GetYaxis()->SetTitleFont  (   62);
   hPred2->GetYaxis()->SetTitleOffset(  1.2);
   hPred2->GetYaxis()->SetTitleSize  (0.060);
   hPred2->GetYaxis()->SetTickLength (0.03 );
   hPred2->GetXaxis()->SetLabelFont  (   42);
   hPred2->GetXaxis()->SetLabelSize  (0.040);
   hPred2->GetXaxis()->SetNdivisions (  505);
-  hPred2->GetXaxis()->SetTitleFont  (   42);
+  hPred2->GetXaxis()->SetTitleFont  (   62);
   hPred2->GetXaxis()->SetTitleSize  (0.060);
   hPred2->GetXaxis()->SetTickLength (0.07 );
  
@@ -297,14 +297,14 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hPred3->GetYaxis()->SetLabelOffset(0.015);
   hPred3->GetYaxis()->SetLabelSize  (0.050);
   hPred3->GetYaxis()->SetNdivisions (  505);
-  hPred3->GetYaxis()->SetTitleFont  (   42);
+  hPred3->GetYaxis()->SetTitleFont  (   62);
   hPred3->GetYaxis()->SetTitleOffset(  1.2);
   hPred3->GetYaxis()->SetTitleSize  (0.060);
   hPred3->GetYaxis()->SetTickLength (0.03 );
   hPred3->GetXaxis()->SetLabelFont  (   42);
   hPred3->GetXaxis()->SetLabelSize  (0.040);
   hPred3->GetXaxis()->SetNdivisions (  505);
-  hPred3->GetXaxis()->SetTitleFont  (   42);
+  hPred3->GetXaxis()->SetTitleFont  (   62);
   hPred3->GetXaxis()->SetTitleSize  (0.060);
   hPred3->GetXaxis()->SetTickLength (0.07 );
 
@@ -367,7 +367,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hData->Draw("ep,same");
 
   gStyle->SetOptStat(0);
-  TLegend* legend = new TLegend(0.20,0.65,0.80,0.85);
+  TLegend* legend = new TLegend(0.20,0.62,0.85,0.87);
   legend->SetBorderSize(    0);
   legend->SetFillColor (    0);
   legend->SetTextAlign (   12);
@@ -502,14 +502,14 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hRatio2->GetYaxis()->SetLabelOffset(0.015);
   hRatio2->GetYaxis()->SetLabelSize  (0.050);
   hRatio2->GetYaxis()->SetNdivisions (  505);
-  hRatio2->GetYaxis()->SetTitleFont  (   42);
+  hRatio2->GetYaxis()->SetTitleFont  (   62);
   hRatio2->GetYaxis()->SetTitleOffset(  1.2);
   hRatio2->GetYaxis()->SetTitleSize  (0.060);
   hRatio2->GetYaxis()->SetTickLength (0.03 );
   hRatio2->GetXaxis()->SetLabelFont  (   42);
   hRatio2->GetXaxis()->SetLabelSize  (0.040);
   hRatio2->GetXaxis()->SetNdivisions (  505);
-  hRatio2->GetXaxis()->SetTitleFont  (   42);
+  hRatio2->GetXaxis()->SetTitleFont  (   62);
   hRatio2->GetXaxis()->SetTitleSize  (0.060);
   hRatio2->GetXaxis()->SetTickLength (0.07 );
 
@@ -517,14 +517,14 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   hRatio3->GetYaxis()->SetLabelOffset(0.015);
   hRatio3->GetYaxis()->SetLabelSize  (0.050);
   hRatio3->GetYaxis()->SetNdivisions (  505);
-  hRatio3->GetYaxis()->SetTitleFont  (   42);
+  hRatio3->GetYaxis()->SetTitleFont  (   62);
   hRatio3->GetYaxis()->SetTitleOffset(  1.2);
   hRatio3->GetYaxis()->SetTitleSize  (0.060);
   hRatio3->GetYaxis()->SetTickLength (0.03 );
   hRatio3->GetXaxis()->SetLabelFont  (   42);
   hRatio3->GetXaxis()->SetLabelSize  (0.040);
   hRatio3->GetXaxis()->SetNdivisions (  505);
-  hRatio3->GetXaxis()->SetTitleFont  (   42);
+  hRatio3->GetXaxis()->SetTitleFont  (   62);
   hRatio3->GetXaxis()->SetTitleSize  (0.060);
   hRatio3->GetXaxis()->SetTickLength (0.07 );
  
