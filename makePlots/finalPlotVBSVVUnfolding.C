@@ -86,8 +86,8 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   else if( isNormalized && keyLabel0.Contains("MJJ"))    theYTitle = "1/#sigma d#sigma/dm_{jj} [1/bin]";
   else if(!isNormalized && keyLabel0.Contains("MLL"))    theYTitle = "d#sigma/dm_{ll} [fb/bin]";
   else if( isNormalized && keyLabel0.Contains("MLL"))    theYTitle = "1/#sigma d#sigma/dm_{ll} [1/bin]";
-  else if(!isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "d#sigma/dN_{j} [fb/bin]";
-  else if( isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "1/#sigma d#sigma/dN_{j} [1/bin]";
+  else if(!isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "d#sigma/dn_{j} [fb/bin]";
+  else if( isNormalized && keyLabel0.Contains("NJET"))   theYTitle = "1/#sigma d#sigma/dn_{j} [1/bin]";
   else if(!isNormalized && keyLabel0.Contains("DELTAETAJJ")) theYTitle = "d#sigma/d#Delta#eta_{jj} [fb/bin]";
   else if( isNormalized && keyLabel0.Contains("DELTAETAJJ")) theYTitle = "1/#sigma d#sigma/d#Delta#eta_{jj} [1/bin]";
   else if(!isNormalized && keyLabel0.Contains("DELTAPHIJJ")) theYTitle = "d#sigma/d#Delta#phi_{jj} [fb/bin]";
