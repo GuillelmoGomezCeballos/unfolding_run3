@@ -97,7 +97,7 @@ void finalPlotVBSVVUnfolding(TString keyLabel0 = "MLL", bool isNormalized = fals
   if     (keyLabel0.Contains("WZMJJ")	    ) {XTitle = "m_{jj}";}
   else if(keyLabel0.Contains("WWMJJ")	    ) {XTitle = "m_{jj}";}
   else if(keyLabel0.Contains("WWMLL")	    ) {XTitle = "m_{ll}";}
-  else if(keyLabel0.Contains("WWNJET")	    ) {XTitle = "Number of jets"; units = "";}
+  else if(keyLabel0.Contains("WWNJET")	    ) {XTitle = "n_{j}"; units = "";}
   else if(keyLabel0.Contains("WWDELTAETAJJ")) {XTitle = "#Delta#eta_{jj}"; units = "";}
   else if(keyLabel0.Contains("WWDELTAPHIJJ")) {XTitle = "#Delta#phi_{jj}"; units = "";}
 
